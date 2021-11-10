@@ -1,0 +1,23 @@
+elastic cluster??
+cluster contain node and node contain shard and replica
+collection of node is called cluster
+
+elastic node??
+node is server store data and participating cluster indexing and seach capability
+
+elastic shard??
+distubuted document for fast processing
+shard is no. of data/document/row
+distributed document in to no of shard not copy
+
+elastic replica?? 
+duplicated copy of shard
+
+why we are using node and cluster??
+data redunncy and data avability
+
+
+communcation b/w node and cluster we used??
+transport module
+every node have http and tranport traffic
+

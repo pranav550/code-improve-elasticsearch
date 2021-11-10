@@ -1,0 +1,12 @@
+where elastic search used??
+1)full text search
+2)Auto complete
+3)multitenant
+4)schema free
+
+
+why we need elastic search??
+search is fast comapre to sql
+implement analytics
+implement log
+

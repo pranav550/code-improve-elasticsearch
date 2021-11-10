@@ -1,0 +1,117 @@
+queryDSL(DOmain specific language):-elastic search provide a queryDSL based a json define queries
+
+Two type:-
+1)Leaf query clause:-in this look for a particular value in a particular field such as match, term, range
+2)compund query clause:-it combine multiple queries (wrap the other leaf query)
+such as bool,dis_max,constant query
+
+Full text Query:-
+1)Match query : either of any keword
+
+#match
+GET employee-details/_doc/_search
+{
+  "query":{
+    "match":{
+      "comments":"quick match dog"
+    }
+  }
+}
+
+
+2)Match Phrase query: must to match all keyword
+
+#match
+GET employee-details/_doc/_search
+{
+  "query":{
+    "match_phrase":{
+      "comments":"brown dog"
+    }
+  }
+}
+
+
+3)Match Phrase prefix query:have some prefix beforea and after keyword 
+
+GET employee-details/_doc/_search
+{
+  "query":{
+    "match_phrase_prefix":{
+      "comments":"brown dog"
+    }
+  }
+}
+4)Match_all :- give all result
+
+#match_all
+
+GET employee-details/_doc/_search
+{
+  "query":{
+    "match_all":{}
+  }
+}
+
+5)Query String Query
+
+# query string
+GET employee-details/_doc/_search
+{
+  "query":{
+    "query_string":{
+      "default_field":"empFirstName",
+      "query":"*"
+      }
+  }
+}
+
+GET employee-details/_doc/_search
+{
+  "query":{
+    "query_string":{
+      "default_field":"empLastName",
+      "query":"verma"
+      }
+  }
+}
+
+# query string
+
+GET employee-details/_doc/_search
+{
+  "query":{
+    "query_string":{
+      "default_field":"empFirstName",
+      "query":"vishal verma",
+      "default_operator":"OR"
+      }
+  }
+}
+
+
+# query string
+taking mor multiple field
+GET employee-details/_doc/_search
+{
+  "query":{
+    "query_string":{
+      "fields":["empFirstName","empLastName"],
+      "query":"vishal verma",
+      "default_operator":"OR"
+      }
+  }
+}
+
+# query string
+GET employee-details/_doc/_search
+{
+  "query":{
+    "query_string":{
+      "fields":["empFirstName","empLastName"],
+      "query":"vishal verma",
+      "default_operator":"AND"
+      }
+  }
+}
+

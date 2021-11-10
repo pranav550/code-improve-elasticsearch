@@ -1,0 +1,10 @@
+What is elastic search??
+open source,
+multi tenant,
+full text,
+distributed search
+
+it is a search engine or database.
+it is no sql database.
+
+speed of search is very fast compare to sql query

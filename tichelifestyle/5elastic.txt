@@ -1,0 +1,134 @@
+elasticsearch api
+
+1)Document api
+2)Search api
+3)indices api
+4)cat api
+5)cluster api
+
+Document Api->
+1)single document api
+index api :- add and update in one table
+
+POST employee-details/_doc/101
+{
+  "employeeId":"101",
+  "employeeName":"test2",
+  "employeeAge":"30",
+  "Gender":"Male",
+  "Address":[{"addressNumber":"123","addressCity":"hyderabad", "addressState":"AP"}]
+}
+
+
+POST employee-details/_doc/101
+{
+  "employeeId":"101",
+  "employeeName":"test2",
+  "employeeAge":"32",
+  "Gender":"Male",
+  "Address":[{"addressNumber":"123","addressCity":"hyderabad", "addressState":"AP"}]
+}
+
+get api:-
+
+GET employee-details/_doc/_search
+GET employee-details/_doc/_search?size=100
+
+
+mapping:-
+GET employee-details/_mapping
+
+count:-
+GET employee-details/_count
+
+delete api:-
+DELETE employee-details/_doc/101
+
+update api:-
+
+POST employee-details/_update/101
+{
+  "script": {
+    "source": "ctx._source.employeeAge=params.val",
+    "lang": "painless",
+    "params": {
+      "val": 30
+    }
+  }
+}
+
+#post
+POST employee-details/_update/101
+{
+  "script": {
+   
+    "source": """
+        if(ctx._source.tags == null) {
+          ctx._source.Address = new HashMap(params.tag);
+        }
+        if(ctx._source.tags != null) {
+          ctx._source.tag.add(params.tag)
+        }
+      """,
+    "lang": "painless",
+    "params": {
+      "tag":{
+          "addressNumber" :"456",
+          "addressCity" :"pune",
+          "addressState" :"Maharastra"
+      }
+    }
+  }
+}
+
+POST employee-details/_update/103
+{
+  "doc": {
+    "employeeName":"ravi"
+  }
+}
+
+2)multi document api
+multi get api
+bulk api
+delete by query:-delete multiple record
+POST /employee-details/_delete_by_query
+{
+  "query": {
+    "match": {
+      "employeeName": "test"
+    }
+  }
+}
+
+upate by query:-
+
+POST employee-details/_update_by_query?conflicts=proceed
+{
+  "query": { 
+    "term": {
+      "employeeName": "test"
+    }
+  },
+   "script": {
+   
+    "source": """
+        if(ctx._source.tags == null) {
+          ctx._source.Address = new HashMap(params.tag);
+        }
+        if(ctx._source.tags != null) {
+          ctx._source.Address.add(params.tag)
+        }
+      """,
+    "lang": "painless",
+    "params": {
+      "tag":{
+          "addressNumber" :"456",
+          "addressCity" :"pune1",
+          "addressState" :"Maharastra1"
+      }
+    }
+  }
+}
+
+reindex api

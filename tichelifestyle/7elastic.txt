@@ -1,0 +1,50 @@
+#search
+
+GET employee-details/_doc/_search
+
+GET employee-details/_search
+
+GET employee-details/_doc/_search?size=1000
+
+GET employee-details/_doc/_search
+{
+  "query":{
+    "match":{
+      "employeeName":"test"
+    }
+  }
+}
+
+# from #size:-pagination
+
+GET employee-details/_doc/_search
+{
+  "size":10,
+  "from":0,
+  "query":{
+    "match":{
+      "employeeName":"test"
+    }
+  }
+}
+
+# sort
+GET employee-details/_doc/_search
+{
+  "size":10,
+  "from":0,
+  "query":{
+    "query_string":{
+      "default_field":"employeeName",
+      "query":"*"
+    }
+  }
+  , "sort" : [
+    { 
+      "employeeName.keyword" :
+    {"order" : "desc"}
+      
+    }
+    
+  ]
+}

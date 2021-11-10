@@ -1,0 +1,40 @@
+Elastic Search:-
+1)it is search engine.
+2)free and open source
+3)full text search
+4)scalable
+(i) verical: increase ram
+(ii) horizontal: increase computer
+5)inverted index
+6)schema free
+7)it s input and output on json
+
+It store structured and non structured data
+
+Apache lucene:-
+1) it basesd on lucene seach library IR(Information retrival)
+2)free
+3)open source
+4)based on java
+5)inverted index
+
+Terminology of elastic search:-
+
+1)cluster
+2)node
+3)Index(Table)
+4)Document(Row)
+5)Field(Column)
+6)Mapping(schema)
+
+
+1)shard:- divide data how many parts
+2)Primary shard -> write data in which part
+3)Replica shard -> multiple copies of data 
+
+elastic seach start command elasticsearch
+elastic search run 9200  
+
+kibana start command kibana
+kibana run  5601
+

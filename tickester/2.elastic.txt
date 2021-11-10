@@ -1,0 +1,22 @@
+Go To humburger -> DEV tools
+
+GET _cat/indices
+
+GET kibana_sample_data_ecommerce/_search
+
+
+POST tutorial/_doc/1
+{
+    "title":"learning elastic search"
+}
+
+GET tutorial/_search
+
+Delete tutorial/_doc/1
+
+PUT tutorial/_doc/2
+{
+  "title":"Learning test"
+}
+
+_aliases

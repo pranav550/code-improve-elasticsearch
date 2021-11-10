@@ -1,0 +1,41 @@
+// multiget:- getting multiple data from multiple docment from single or multiple index
+
+GET /_mget
+{
+  "docs": [
+    {
+      "_index": "employee-details",
+      "_type": "_doc",
+      "_id": "100"
+    },
+     {
+      "_index": "employee-details",
+      "_type": "_doc",
+      "_id": "101"
+    }
+   ]
+}
+
+// Bulk Api:- we can perform create,get, update, delete at same time and response is faster
+
+POST _bulk
+{ "index" : { "_index" : "test", "_id" : "1" } }
+{ "field1" : "value1" }
+{ "delete" : { "_index" : "test", "_id" : "2" } }
+{ "create" : { "_index" : "test", "_id" : "3" } }
+{ "field1" : "value3" }
+{ "update" : {"_id" : "1", "_index" : "test"} }
+{ "doc" : {"field2" : "value2"} }
+
+
+Reindex:-Copies documents from a source to a destination.
+
+POST _reindex
+{
+  "source": {
+    "index": "my-index-000001"
+  },
+  "dest": {
+    "index": "my-new-index-000001"
+  }
+}

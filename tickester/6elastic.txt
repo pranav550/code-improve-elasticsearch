@@ -1,0 +1,133 @@
+#Aggregation
+
+#terms
+
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "categories": {
+      "terms": {
+        "field": "category.keyword",
+        "size": 10
+      }
+    }
+  }
+}
+
+#distinct
+
+GET kibana_sample_data_ecommerce/_search
+{  "size":0,
+   "aggs": {
+    "category_count": {
+      "cardinality": {
+        "field": "category.keyword"
+      }
+    }
+  }
+}
+
+#nested
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "categories": {
+      "terms": {
+        "field": "day_of_week",
+        "size": 10
+      },"aggs": {
+        "NAME": {
+          "terms": {
+             "field": "category.keyword",
+             "size": 10
+          }
+        }
+      }
+    }
+  }
+}
+
+#max
+
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "NAME": {
+      "max": {
+        "field":"products.base_price"
+      }
+    }
+  }
+}
+
+
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "NAME": {
+      "min": {
+        "field":"products.base_price"
+      }
+    }
+  }
+}
+
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "NAME": {
+      "avg": {
+        "field":"products.base_price"
+      }
+    }
+  }
+}
+
+#Sum of price in day of week
+
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "NAME": {
+      "terms": {
+        "field": "day_of_week",
+        "size": 10
+      },
+      "aggs": {
+        "NAME": {
+          "sum": {
+            "field": "products.price"
+          }
+        }
+      }
+    }
+  }
+}
+
+#stats
+
+GET kibana_sample_data_ecommerce/_search
+{"size": 0, 
+  "aggs": {
+    "NAME": {
+      "stats": {
+        "field": "products.base_price"
+      }
+    }
+  }
+}
+
+#date_histogram
+
+GET kibana_sample_data_ecommerce/_search
+{
+  "size": 0,
+  "aggs": {
+    "NAME": {
+      "date_histogram": {
+        "field": "order_date",
+        "interval": "month"
+      }
+    }
+  }
+}

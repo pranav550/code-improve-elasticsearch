@@ -1,0 +1,12 @@
+elastic search index???
+index is like a database 
+it store in json document
+
+field(column)
+row(document)
+table/database(index)
+database(cluster instance)
+cluster(cluster fedrated/multi cluster)
+
+mapping??
+it means schema

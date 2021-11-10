@@ -1,0 +1,83 @@
+GET _cat/indices
+
+// term
+GET kibana_sample_data_ecommerce/_search
+{
+    "query":{
+        "term":{
+            "customer_gender":{
+                "value":"MALE"
+            }
+        }
+    }
+}
+
+// terms
+GET kibana_sample_data_ecommerce/_search
+{
+    "query":{
+        "terms": {
+      "category": [
+        "men",
+        "shoes"
+      ]
+    }
+    }
+}
+
+// match
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "match": {
+      "products.product_id": "13136"
+    }
+  }
+}
+
+// range
+
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "range": {
+      "taxful_total_price": {
+        "gte": 50,
+        "lte": 100
+      }
+    }
+  }
+}
+
+#bool query  (and , or, not)
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {"match": {
+          "day_of_week": "Sunday"
+        }}
+      ],
+      "should": [
+        {
+          "match": {
+            "customer_first_name": "Betty"
+          }
+        }
+      ]
+      
+    }
+  }
+}
+
+GET kibana_sample_data_ecommerce/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Betty",
+      "fields": ["customer_first_name","customer_last_name"]
+    }
+  }
+}
+

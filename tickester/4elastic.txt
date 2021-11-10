@@ -1,0 +1,47 @@
+GET tutorial/_mapping
+
+PUT tutorial2
+
+POST tutorial2/_mapping
+{
+    "properties":{
+        "title":{
+            "type":"text"
+        },
+        "length":{
+            "type":"long"
+        },
+        "writer":{
+            "type":"keyword"
+        }
+    }
+} 
+
+GET tutorial2/_mapping
+
+POST tutorial2/_doc/1
+{
+  "writer":["ME","You"]
+}
+
+GET tutorial2/_doc/1
+
+
+
+PUT tutorial3
+
+POST tutorial3/_mapping
+{
+    "properties":{
+        "users":{
+            "type":"object",
+            "properties":{
+                "id":{
+                    "type":"text"
+                }
+            }
+        }
+    }
+}
+
+GET tutorial3/_mapping

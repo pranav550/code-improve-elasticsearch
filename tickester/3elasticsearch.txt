@@ -1,0 +1,31 @@
+#partial update
+
+POST tutorial/_update/1
+{
+    "doc":{
+        "length":500
+    }
+}
+
+#gerneate uuid if we are not provide id
+
+POST tutorial/_doc
+{
+    title:"learing elastic search",
+    length:400,
+    writer:"packt"
+}
+
+#search lite
+
+http://localhost:9200/tutorial/_search?q=title=elastic
+
+#elastic search have two type search
+1)keyword suport
+2)text support
+
+
+Process of elastic search
+1)tokentization
+2)lower casing
+3)stem filter
